@@ -10,7 +10,7 @@
     <nav class="navbar">
         <div class="nav-links">
             <a href="./index.php?route=login"><span class="active"><?php echo isLoggedIn() ? "Déconnexion" : "Connexion"; ?></span></a>
-            <a href="./index.php?route=validation"><span>Validation des missions</span></a>
+            <a href="./index.php?route=mission"><span>Validation des missions</span></a>
             <a href="./index.php?route=frais"><span>Paiement des frais</span></a>
             <a href="./index.php?route=parametre"><span>Paramétrage</span></a>
         </div>

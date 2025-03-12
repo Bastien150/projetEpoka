@@ -1,5 +1,7 @@
 <?php 
-//verifie si les identifiants sont correctent
+/**
+ * verifie si les identifiants sont correctent
+ */
 function login($userid, $pass){
     $sql = "SELECT * FROM salarie WHERE Sal_No = ?";
     $result = executeSQL($sql, [$userid]);
@@ -14,8 +16,9 @@ function login($userid, $pass){
         }
     }
 }
-
-//vérifie si la personne est connecté
+/**
+ * vérifie si la personne est connecté
+ */
 function isLoggedIn(){
     if(isset($_SESSION['user']) && $_SESSION['user'] != null){
         return true;
