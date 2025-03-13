@@ -49,7 +49,7 @@
                             <td><?php echo $mission["Mis_DateDebut"] ?? "Non défini";?></td>
                             <td><?php echo $mission["Mis_DateFin"] ?? "Non défini";?></td>
                             <td><?php echo $mission["Vil_Nom"] ?? "Non défini";?></td>
-                            <td>à faire</td>
+                            <td><?php echo montantMission($mission["Mis_No"]); ?></td>
                             <td><?php if($mission['Mis_Validee'] == 0){echo '<button class="btn-validate">Rembourser</button></td>';}
                             else{
                                 $validation = $mission['Mis_Validee'] == 1 ? "Validée" : "";

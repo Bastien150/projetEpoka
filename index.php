@@ -27,7 +27,7 @@ switch ($route) {
             }
         }
         require_once __DIR__ . '/app/vue/login.php';
-        break;
+        exit;
 
     case 'mission':
         /* vérifier si connecter sinon login */
@@ -35,6 +35,7 @@ switch ($route) {
             $_SESSION['erreur'] = "Veuillez vous connecter avant ...";
             header('Location: ' . BASE_URL . '/index.php?route=login');
         }
+        
         $missions = getLastMissions();
         require_once __DIR__ . '/app/vue/mission.php';
         exit;
@@ -55,6 +56,28 @@ switch ($route) {
             $_SESSION['erreur'] = "Veuillez vous connecter avant ...";
             header('Location: ' . BASE_URL . '/index.php?route=login');
         }
+        
+        /* traite formDistance et enregistre dans la bdd*/
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['distanceForm'])) {
+            $departVille = $_POST['departVille'];
+            $arriveVille = $_POST['arriverVille'];
+            $distanceKm = $_POST['distanceKmVille'];
+
+            $_SESSION['resultQuery'] = enregistrerDistance($departVille, $arriveVille, $distanceKm);
+        }
+
+        /* traite formRemboursement et enregistre dans la bdd*/
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['formRemboursement'])) {
+            $remboursementKm = $_POST['remboursementKm'];
+            $hebergement = $_POST['hebergement'];
+
+            $_SESSION['resultQuery'] = modifierParametre($remboursementKm, $hebergement);
+        }
+
+        /* Récupere les paramètre, distances et villes enregistrer */
+        $distances = getAllDistances();
+        $villes = getAllVilles();
+        $param = getAllParametre();
 
         require_once __DIR__ . '/app/vue/parametre.php';
         exit;
