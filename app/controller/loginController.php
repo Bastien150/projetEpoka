@@ -16,14 +16,16 @@ function login($userid, $pass){
         }
     }
 }
+
 /**
  * vérifie si la personne est connecté
+ * @return boolean true si connecter sinon false
  */
 function isLoggedIn(){
     if(isset($_SESSION['user']) && $_SESSION['user'] != null){
         return true;
     }
-    return false; //mettre a false quand on aura l'authentification
+    return false; 
 }
 
 function deconnecter(){

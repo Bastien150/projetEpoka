@@ -59,7 +59,7 @@
             <form action="./index.php?route=parametre" method="post">
                 <div class="row-2" style="margin-bottom: 0;">
                     <div class="form-groups">
-                        <label for="departVille">De :</label>
+                        <label for="departVille">Agence :</label>
                         <select name="departVille" id="departVille">
                             <option selected>Veuillez sélectionner une option</option>
                             <?php  foreach ($agences as $agence) { 
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-groups">
-                        <label for="arriverVille">À :</label>
+                        <label for="arriverVille">Ville de la mission :</label>
                         <select name="arriverVille" id="arriverVille">
                             <option selected>Veuillez sélectionner une option</option>
                             <?php foreach ($villes as $ville) { ?>
@@ -103,7 +103,7 @@
                     <thead>
                         <tr>
                             <th>Agence</th>
-                            <th>Arriver</th>
+                            <th>Arrivée</th>
                             <th>Km</th>
                         </tr>
                     </thead>
