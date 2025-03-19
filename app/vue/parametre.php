@@ -20,7 +20,9 @@
             <span>Copyright © 2025 Forest Bastien</span>
         </div>
     </nav>
+    
     <?php
+    /* si l'utilisateur n'est pas connecter il affiche une erreur */
     if (isset($_SESSION['user']) && $_SESSION['user']['Sal_Personnel'] == 0) {
         echo '<p class="error-message" style="display: block; font-size: 20px;" id="error-message">Vous n&#39;êtes pas autorisé</p>';
     } else {
@@ -50,8 +52,6 @@
                 </div>
             </form>
 
-
-
             <hr>
             <!-- Form Distance -->
             <h2>Distance entre villes</h2>
@@ -62,8 +62,10 @@
                         <label for="departVille">De :</label>
                         <select name="departVille" id="departVille">
                             <option selected>Veuillez sélectionner une option</option>
-                            <?php foreach ($villes as $ville) { ?>
-                                <option value="<?php echo $ville['Vil_No']; ?>"><?php echo $ville['Vil_CP'] . " - " . $ville['Vil_Nom']; ?></option>
+                            <?php  foreach ($agences as $agence) { 
+                                $villeAgence = getVilleById($agence['Ag_NoVille']);
+                                ?>
+                                <option value="<?php echo $villeAgence['Vil_No'] ?>"><?php echo $villeAgence['Vil_CP'] . " - " . $villeAgence['Vil_Nom']; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -100,8 +102,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>De</th>
-                            <th>À</th>
+                            <th>Agence</th>
+                            <th>Arriver</th>
                             <th>Km</th>
                         </tr>
                     </thead>
@@ -121,8 +123,7 @@
         </main>
 
 
-    <?php } ?>
-    <?php 
+    <?php } 
     if(isset($_SESSION['resultQuery'])){
     ?>
     <div class="totalCenter">

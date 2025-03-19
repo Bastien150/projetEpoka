@@ -36,6 +36,15 @@ switch ($route) {
             header('Location: ' . BASE_URL . '/index.php?route=login');
         }
         
+        /* traitement form validation */
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['validate'])){
+            $missionNo = $_POST['Mis_No'];
+            if(isset($missionNo)){
+                $_SESSION['resultValitation'] = validationMission($missionNo);
+            }
+        }
+
+
         $missions = getLastMissions();
         require_once __DIR__ . '/app/vue/mission.php';
         exit;
@@ -46,6 +55,14 @@ switch ($route) {
             $_SESSION['erreur'] = "Veuillez vous connecter avant ...";
             header('Location: ' . BASE_URL . '/index.php?route=login');
         }
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remboursementMission'])){
+            $missionNo = $_POST['Mis_No'];
+            if(isset($missionNo)){
+                $_SESSION['resultRemboursement'] = remboursementMission($missionNo);
+            }
+        }
+
         $missions = getLastMissions();
         require_once __DIR__ . '/app/vue/frais.php';
         exit;
@@ -78,6 +95,7 @@ switch ($route) {
         $distances = getAllDistances();
         $villes = getAllVilles();
         $param = getAllParametre();
+        $agences = getAllAgence();
 
         require_once __DIR__ . '/app/vue/parametre.php';
         exit;
