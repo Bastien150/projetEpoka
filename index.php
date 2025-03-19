@@ -1,6 +1,6 @@
 <?php
 session_start();
-const BASE_URL = "https://glubul/projetEpoka";
+const BASE_URL = "http://localhost/projetEpoka";
 $route = $_GET['route'] ?? 'login';
 require_once __DIR__ . '/app/controller/loginController.php';
 require_once __DIR__ . '/app/controller/missionController.php';
