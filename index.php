@@ -79,8 +79,13 @@ switch ($route) {
             $departVille = $_POST['departVille'];
             $arriveVille = $_POST['arriverVille'];
             $distanceKm = $_POST['distanceKmVille'];
+            if($departVille != null && $departVille != null && $distanceKm != null){
 
-            $_SESSION['resultQuery'] = enregistrerDistance($departVille, $arriveVille, $distanceKm);
+                $_SESSION['resultQuery'] = enregistrerDistance($departVille, $arriveVille, $distanceKm);
+            }else{
+                $_SESSION['resultQuery'] = 'Valeur Manquante';
+            }
+            
         }
 
         /* traite formRemboursement et enregistre dans la bdd*/

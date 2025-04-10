@@ -55,13 +55,12 @@
             <hr>
             <!-- Form Distance -->
             <h2>Distance entre villes</h2>
-
+            
             <form action="./index.php?route=parametre" method="post">
                 <div class="row-2" style="margin-bottom: 0;">
                     <div class="form-groups">
                         <label for="departVille">Agence :</label>
                         <select name="departVille" id="departVille">
-                            <option selected>Veuillez sélectionner une option</option>
                             <?php  foreach ($agences as $agence) { 
                                 $villeAgence = getVilleById($agence['Ag_NoVille']);
                                 ?>
@@ -72,19 +71,22 @@
 
                     <div class="form-groups">
                         <label for="arriverVille">Ville de la mission :</label>
-                        <select name="arriverVille" id="arriverVille">
-                            <option selected>Veuillez sélectionner une option</option>
+                        <input type="text" id="villeInput" list="missions" autocomplete="off" require>
+                        <input type="hidden" id="villeId" name="arriverVille">
+                    
+                        <!-- dataliste-->
+                        <datalist id="missions">
                             <?php foreach ($villes as $ville) { ?>
-                                <option value="<?php echo $ville['Vil_No']; ?>"><?php echo $ville['Vil_CP'] . " - " . $ville['Vil_Nom']; ?></option>
+                                <option data-value="<?php echo $ville['Vil_No']; ?>" value="<?php echo $ville['Vil_CP'] . " - " . $ville['Vil_Nom']; ?>">
                             <?php } ?>
-                        </select>
+                        </datalist>
                     </div>
                 </div>
 
                 <div class="totalCenter" style="margin: 0 0 2rem 0;">
                     <div class="form-group">
                         <label for="distanceKmVille">Distance en km :</label>
-                        <input type="number" id="distanceKmVille" name="distanceKmVille" style="margin-right: 330px">
+                        <input type="number" id="distanceKmVille" name="distanceKmVille"  required style="margin-right: 330px">
                     </div>
                 </div>
 
@@ -122,7 +124,6 @@
 
         </main>
 
-
     <?php } 
     if(isset($_SESSION['resultQuery'])){
     ?>
@@ -146,4 +147,17 @@
     ?>
 </body>
 <script src="./assets/js/main.js"></script>
+<script>
+    
+document.getElementById('villeInput').addEventListener('input', function() {
+    let input = this.value;
+    let options = document.getElementById('missions').getElementsByTagName('option');
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].value === input) {
+            document.getElementById('villeId').value = options[i].getAttribute('data-value');
+            break;
+        }
+    }
+});
+</script>
 </html>

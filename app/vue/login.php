@@ -25,17 +25,15 @@
     <main class="login-container">
         <h1>Connexion</h1>
         <form class="login-form" action="./index.php?route=login" method="POST">
-            <div class="form-group">
-                <label for="email">Utilisateur :</label>
-                <input type="text" id="utilisateur" name="utilisateur" placeholder="Entrez votre identifiant" required>
-                <p class="error-message" id="email-error">Veuillez entrer une adresse e-mail valide.</p>
-            </div>
+<div class="form-group">
+    <label for="email">Utilisateur :</label>
+    <input type="text" name="utilisateur" placeholder="Entrez votre identifiant" required>
+</div>
 
-            <div class="form-group">
-                <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
-                <p class="error-message" id="password-error">Le mot de passe est requis.</p>
-            </div>
+<div class="form-group">
+    <label for="password">Mot de passe :</label>
+    <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+</div>
 
             <button type="submit" class="btn-submit">Se connecter</button>
         </form>

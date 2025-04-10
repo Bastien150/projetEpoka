@@ -85,7 +85,7 @@
                             <td><?php echo $mission["Mis_DateFin"] ?? "Non définie";?></td>
                             <td><?php echo $mission["Vil_Nom"] ?? "Non défini";?></td>
                             <td><?php echo $montantMission; ?></td>
-                            <td><?php $validation = $mission['Mis_Remboursee'] == 1 ? "Remboursée" : ""; echo $validation; ?>
+                            <td><?php echo $mission['Mis_Remboursee'] == 1 ? "Remboursée" : ""; ?>
                         </form>
                     </tr>
                     <?php }} ?>

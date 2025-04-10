@@ -28,8 +28,10 @@
 
     <main class="container">
         <h1>Validation des missions de vos subordonnés</h1>
+
+        
         <div class="table-container">
-            <table>
+        <table>
                 <thead>
                     <tr>
                         <th>Nom du salarié</th>

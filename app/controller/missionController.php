@@ -74,13 +74,26 @@ function getAllVilles(){
 /**
  * Permet d'enregisterer en bdd la distance choisit
  */
-function enregistrerDistance($departVille, $arriveVille, $distanceKm){
-    $sql = "INSERT INTO distance (Dist_NoVille1, Dist_NoVille2, Dist_Km) VALUES (?, ?, ?)";
-
-    $result = executeSQL($sql, [$departVille, $arriveVille, $distanceKm]);
-    $result->fetch(PDO::FETCH_ASSOC);
-    return 'Ajout de la nouvelle distance';
+function enregistrerDistance($departVille, $arriveVille, $distanceKm) {
+    try {
+        // Préparation de la requête SQL
+        $sql = "INSERT IGNORE INTO distance (Dist_NoVille1, Dist_NoVille2, Dist_Km) VALUES (?, ?, ?)";
+        
+        // Exécution de la requête avec les paramètres
+        $result = executeSQL($sql, [$departVille, $arriveVille, $distanceKm]);
+        
+        // Vérification du résultat
+        if ($result && $result->rowCount() > 0) {
+            return 'Ajout de la nouvelle distance';
+        } else {
+            return 'La distance existe déjà ou n\'a pas pu être insérée';
+        }
+    } catch (Exception $e) {
+        return "Erreur de l'ajout de la distance: " . $e->getMessage();
+    }
 }
+
+
 
 /** 
  * Récupere toutes les distances enregistré

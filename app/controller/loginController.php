@@ -10,10 +10,6 @@ function login($userid, $pass){
     //verifie le mot de passe de l'utilisateur
     if(isset($user['Sal_MotDePasse']) && $user['Sal_MotDePasse'] == $pass){
         $_SESSION['user'] = $user;
-    }else {
-        if(isset($_SESSION['user'])){
-            unset($_SESSION['user']);
-        }
     }
 }
 
